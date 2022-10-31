@@ -1,7 +1,7 @@
 const generateBtn = document.querySelector("#generate");
 
 // Array of lowercase characters to be included in password
-const lowerCasedCharacters = [
+const LowercasedCharacters = [
   "a",
   "b",
   "c",
@@ -31,10 +31,10 @@ const lowerCasedCharacters = [
 ];
 
 // Array of numeric characters to be included in password
-const numericCharacters = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+const NumericCharacters = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
 // Array of special characters to be included in password
-const specialCharacters = [
+const SpecialCharacters = [
   "@",
   "%",
   "+",
@@ -61,7 +61,7 @@ const specialCharacters = [
 ];
 
 // Array of uppercase characters to be included in password
-const upperCasedCharacters = [
+const UppercasedCharacters = [
   "A",
   "B",
   "C",
@@ -91,7 +91,23 @@ const upperCasedCharacters = [
 ];
 
 function generatePassword() {
-  // TODO: Write your code here
+  passwordLength = prompt("Choose between 8 and 128 characters") 
+    if (passwordLength < 8 || passwordLength > 128) {
+      window.alert("Password length must be between 8 and 128 characters")
+      return
+    }
+    // Determine parameters of the password
+    const userWantsLowercasedCharacters = window.confirm("Do you want to add lowercase letters to your password?")
+    const userWantsNumbericCharacters = window.confirm("Do you want to add uppercase letters to your password?")
+    const userWantsSpecialCharacters = window.confirm("Do you want to add numbers to your password?")
+    const userWantsUppercasedCharacters = window.confirm("Do you want to add symbols to your password?")
+
+    if (userWantsLowercasedCharacters === false && userWantsNumbericCharacters === false && userWantsSpecialCharacters  === false && userWantsUppercasedCharacters === false) {
+      window.alert("You must choose at least one parameter!");
+      return
+    }
+
+    
 }
 
 // Write password to the #password input
