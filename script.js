@@ -91,23 +91,48 @@ const UppercasedCharacters = [
 ];
 
 function generatePassword() {
+
   passwordLength = prompt("Choose between 8 and 128 characters") 
     if (passwordLength < 8 || passwordLength > 128) {
       window.alert("Password length must be between 8 and 128 characters")
       return
     }
-    // Determine parameters of the password
-    const userWantsLowercasedCharacters = window.confirm("Do you want to add lowercase letters to your password?")
-    const userWantsNumbericCharacters = window.confirm("Do you want to add uppercase letters to your password?")
-    const userWantsSpecialCharacters = window.confirm("Do you want to add numbers to your password?")
-    const userWantsUppercasedCharacters = window.confirm("Do you want to add symbols to your password?")
+  // Determine parameters of the password
+  const userWantsLowercasedCharacters = window.confirm("Do you want your password to contain lowercase letters ?")
+  const userWantsNumericCharacters = window.confirm("Do you want your password to contain uppercase letters?")
+  const userWantsSpecialCharacters = window.confirm("Do you want your password to contain numbers?")
+  const userWantsUppercasedCharacters = window.confirm("Do you want your password to contain symbols?")
 
-    if (userWantsLowercasedCharacters === false && userWantsNumbericCharacters === false && userWantsSpecialCharacters  === false && userWantsUppercasedCharacters === false) {
-      window.alert("You must choose at least one parameter!");
-      return
-    }
+  if (userWantsLowercasedCharacters === false && userWantsNumericCharacters === false && userWantsSpecialCharacters  === false && userWantsUppercasedCharacters === false) {
+    window.alert("You must choose at least one parameter");
+    return
+  }
 
-    
+  var optionsCart = []
+
+  if (userWantsLowercasedCharacters === true) {
+    optionsCart.push(LowercasedCharacters)
+  };
+
+  if (userWantsNumericCharacters === true) {
+    optionsCart.push(NumericCharacters)
+  };
+
+  if (userWantsSpecialCharacters === true) {
+    optionsCart.push(SpecialCharacters)
+  };
+
+  if (userWantsUppercasedCharacters === true) {
+    optionsCart.push(UppercasedCharacters)
+  }
+
+  var generatedPassword = ""
+
+  for (var i = 0; i < passwordLength; i++) {
+    generatedPassword = generatedPassword + Math.floor(Math.random() * optionsCart.length);
+  }
+
+  return generatedPassword
 }
 
 // Write password to the #password input
